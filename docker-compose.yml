@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    image: "node:11.8.0"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=develop
+    volumes:
+      - .:/home/node/app
+    ports:
+      - "3000:3000"
+    command: bash -c "yarn install && ./node_modules/.bin/webpack --config ./webpack.config.dev.js && node ./dist/server.js"
